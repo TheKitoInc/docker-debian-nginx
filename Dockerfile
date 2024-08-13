@@ -47,5 +47,14 @@ RUN echo "gzip_comp_level 6;" >> /etc/nginx/services/http/gzip.conf
 RUN echo "gzip_buffers 16 8k;" >> /etc/nginx/services/http/gzip.conf
 RUN echo "gzip_http_version 1.1;" >> /etc/nginx/services/http/gzip.conf
 RUN echo "gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;" >> /etc/nginx/services/http/gzip.conf
+
+# Create service http to https redirect
+RUN cat /dev/null > /etc/nginx/services/http/http_to_https_redirect.conf
+RUN echo "server {" >> /etc/nginx/services/http/http_to_https_redirect.conf
+RUN echo "        listen 80;" >> /etc/nginx/services/http/http_to_https_redirect.conf
+RUN echo "        listen [::]:80;" >> /etc/nginx/services/http/http_to_https_redirect.conf
+RUN echo "        return 301 https://$host$request_uri;" >> /etc/nginx/services/http/http_to_https_redirect.conf
+RUN echo "}" >> /etc/nginx/services/http/http_to_https_redirect.conf
+
 # Run nginx service
 ENTRYPOINT  ["nginx", "-g", "daemon off;"]
