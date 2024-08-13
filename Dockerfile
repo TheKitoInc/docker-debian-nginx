@@ -13,8 +13,8 @@ RUN apt-get install nginx -y
 RUN apt-get install ssl-cert -y
 
 # Create directories
-RUN mkdir -p /etc/nginx/services
 RUN mkdir -p /etc/nginx/snippets
+RUN mkdir -p /etc/nginx/services
 RUN mkdir -p /etc/nginx/services/http
 
 # Create main nginx.conf
