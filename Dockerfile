@@ -69,6 +69,8 @@ RUN echo "}" >> /etc/nginx/services/http/teapot.conf
 # Create service http.conf
 RUN cat /dev/null > /etc/nginx/services/http.conf
 RUN echo "http {" >> /etc/nginx/services/http.conf
+RUN echo "        include /etc/nginx/mime.types;" >> /etc/nginx/services/http.conf
+RUN echo "        default_type application/octet-stream;" >> /etc/nginx/services/http.conf
 RUN echo "}" >> /etc/nginx/services/http.conf
 # Run nginx service
 ENTRYPOINT  ["nginx", "-g", "daemon off;"]
