@@ -9,5 +9,8 @@ RUN upgrade
 # Install nginx
 RUN apt-get install nginx -y
 
+# Create directories
+RUN mkdir -p /etc/nginx/services-enabled
+
 # Run nginx service
 ENTRYPOINT  ["nginx", "-g", "daemon off;"]
