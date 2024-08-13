@@ -56,5 +56,15 @@ RUN echo "        listen [::]:80;" >> /etc/nginx/services/http/http_to_https_red
 RUN echo "        return 301 https://$host$request_uri;" >> /etc/nginx/services/http/http_to_https_redirect.conf
 RUN echo "}" >> /etc/nginx/services/http/http_to_https_redirect.conf
 
+# Create service teapot.conf (Catch All)
+RUN cat /dev/null > /etc/nginx/services/http/teapot.conf
+RUN echo "server {" >> /etc/nginx/services/http/teapot.conf
+RUN echo "        listen 443 ssl http2;" >> /etc/nginx/services/http/teapot.conf
+RUN echo "        listen [::]:443 ssl http2;" >> /etc/nginx/services/http/teapot.conf
+RUN echo "        include snippets/snakeoil.conf;" >> /etc/nginx/services/http/teapot.conf
+RUN echo "        include snippets/robots.conf;" >> /etc/nginx/services/http/teapot.conf
+RUN echo "        return 418;" >> /etc/nginx/services/http/teapot.conf
+RUN echo "}" >> /etc/nginx/services/http/teapot.conf
+
 # Run nginx service
 ENTRYPOINT  ["nginx", "-g", "daemon off;"]
