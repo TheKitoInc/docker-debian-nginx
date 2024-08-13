@@ -49,6 +49,11 @@ RUN cat /dev/null > /etc/nginx/snippets/listen_https.conf
 RUN echo "listen 443 ssl http2;" >> /etc/nginx/snippets/listen_https.conf
 RUN echo "listen [::]:443 ssl http2;" >> /etc/nginx/snippets/listen_https.conf
 
+# Create snippet listen http.conf
+RUN cat /dev/null > /etc/nginx/snippets/listen_http.conf
+RUN echo "listen 80;" >> /etc/nginx/snippets/listen_http.conf
+RUN echo "listen [::]:80;" >> /etc/nginx/snippets/listen_http.conf
+
 # Create service http gzip.conf
 RUN cat /dev/null > /etc/nginx/services/http/gzip.conf
 RUN echo "gzip on;" >> /etc/nginx/services/http/gzip.conf
