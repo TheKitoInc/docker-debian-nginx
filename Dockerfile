@@ -10,7 +10,9 @@ RUN upgrade
 RUN apt-get install nginx -y
 
 # Create directories
-RUN mkdir -p /etc/nginx/services-enabled
+RUN mkdir -p /etc/nginx/services
+RUN mkdir -p /etc/nginx/snippets
+RUN mkdir -p /etc/nginx/services/http
 
 # Create main nginx.conf
 RUN cat /dev/null > /etc/nginx/nginx.conf
