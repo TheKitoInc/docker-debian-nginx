@@ -9,6 +9,9 @@ RUN upgrade
 # Install nginx
 RUN apt-get install nginx -y
 
+# Install snakeoil
+RUN apt-get install ssl-cert -y
+
 # Create directories
 RUN mkdir -p /etc/nginx/services
 RUN mkdir -p /etc/nginx/snippets
