@@ -34,5 +34,15 @@ RUN echo "location /robots.txt {" >> /etc/nginx/snippets/robots.conf
 RUN echo "        add_header Content-Type text/plain;" >> /etc/nginx/snippets/robots.conf
 RUN echo "        return 200 \"User-agent: *\nDisallow: /\n\";" >> /etc/nginx/snippets/robots.conf
 RUN echo "}" >> /etc/nginx/snippets/robots.conf
+
+# Create service http gzip.conf
+RUN cat /dev/null > /etc/nginx/services/http/gzip.conf
+RUN echo "gzip on;" >> /etc/nginx/services/http/gzip.conf
+RUN echo "gzip_vary on;" >> /etc/nginx/services/http/gzip.conf
+RUN echo "gzip_proxied any;" >> /etc/nginx/services/http/gzip.conf
+RUN echo "gzip_comp_level 6;" >> /etc/nginx/services/http/gzip.conf
+RUN echo "gzip_buffers 16 8k;" >> /etc/nginx/services/http/gzip.conf
+RUN echo "gzip_http_version 1.1;" >> /etc/nginx/services/http/gzip.conf
+RUN echo "gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;" >> /etc/nginx/services/http/gzip.conf
 # Run nginx service
 ENTRYPOINT  ["nginx", "-g", "daemon off;"]
