@@ -12,8 +12,8 @@ RUN apt-get install nginx -y
 # Create directories
 RUN mkdir -p /etc/nginx/services-enabled
 
-# Create nginx.conf
 RUN echo "" > /etc/nginx/nginx.conf
+# Create main nginx.conf
 RUN echo "user www-data;" >> /etc/nginx/nginx.conf
 RUN echo "worker_processes auto;" >> /etc/nginx/nginx.conf
 RUN echo "pid /run/nginx.pid;" >> /etc/nginx/nginx.conf
@@ -26,8 +26,8 @@ RUN echo "        worker_connections 768;" >> /etc/nginx/nginx.conf
 RUN echo "        # multi_accept on;" >> /etc/nginx/nginx.conf
 RUN echo "}" >> /etc/nginx/nginx.conf
 
-# Create robots.conf
 RUN echo "" > /etc/nginx/snippets/robots.conf
+# Create snippet robots.conf
 RUN echo "location /robots.txt {" >> /etc/nginx/snippets/robots.conf
 RUN echo "        add_header Content-Type text/plain;" >> /etc/nginx/snippets/robots.conf
 RUN echo "        return 200 \"User-agent: *\nDisallow: /\n\";" >> /etc/nginx/snippets/robots.conf
