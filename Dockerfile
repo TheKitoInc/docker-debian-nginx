@@ -74,8 +74,7 @@ RUN echo "}" >> /etc/nginx/services/http/http_to_https_redirect.conf
 # Create service teapot.conf (Catch All)
 RUN cat /dev/null > /etc/nginx/services/http/teapot.conf
 RUN echo "server {" >> /etc/nginx/services/http/teapot.conf
-RUN echo "        listen 443 ssl http2;" >> /etc/nginx/services/http/teapot.conf
-RUN echo "        listen [::]:443 ssl http2;" >> /etc/nginx/services/http/teapot.conf
+RUN echo "        include snippets/listen_https.conf;" >> /etc/nginx/services/http/teapot.conf
 RUN echo "        include snippets/snakeoil.conf;" >> /etc/nginx/services/http/teapot.conf
 RUN echo "        include snippets/robots.conf;" >> /etc/nginx/services/http/teapot.conf
 RUN echo "        return 418;" >> /etc/nginx/services/http/teapot.conf
