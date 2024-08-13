@@ -38,6 +38,12 @@ RUN echo "        add_header Content-Type text/plain;" >> /etc/nginx/snippets/ro
 RUN echo "        return 200 \"User-agent: *\nDisallow: /\n\";" >> /etc/nginx/snippets/robots.conf
 RUN echo "}" >> /etc/nginx/snippets/robots.conf
 
+# Create snippet websockets.conf
+RUN cat /dev/null > /etc/nginx/snippets/websockets.conf
+RUN echo "proxy_http_version 1.1;" >> /etc/nginx/snippets/websockets.conf
+RUN echo "proxy_set_header Upgrade $http_upgrade;" >> /etc/nginx/snippets/websockets.conf
+RUN echo "proxy_set_header Connection \"upgrade\";" >> /etc/nginx/snippets/websockets.conf
+
 # Create service http gzip.conf
 RUN cat /dev/null > /etc/nginx/services/http/gzip.conf
 RUN echo "gzip on;" >> /etc/nginx/services/http/gzip.conf
