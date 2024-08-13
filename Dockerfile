@@ -21,7 +21,7 @@ RUN echo "worker_processes auto;" >> /etc/nginx/nginx.conf
 RUN echo "pid /run/nginx.pid;" >> /etc/nginx/nginx.conf
 RUN echo "error_log /var/log/nginx/error.log;" >> /etc/nginx/nginx.conf
 RUN echo "include /etc/nginx/modules-enabled/*.conf;" >> /etc/nginx/nginx.conf
-RUN echo "include /etc/nginx/services-enabled/*.conf;" >> /etc/nginx/nginx.conf
+RUN echo "include /etc/nginx/services/*.conf;" >> /etc/nginx/nginx.conf
 
 RUN echo "events {" >> /etc/nginx/nginx.conf
 RUN echo "        worker_connections 768;" >> /etc/nginx/nginx.conf
