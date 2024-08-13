@@ -67,8 +67,7 @@ RUN echo "gzip_types text/plain text/css application/json application/javascript
 # Create service http to https redirect
 RUN cat /dev/null > /etc/nginx/services/http/http_to_https_redirect.conf
 RUN echo "server {" >> /etc/nginx/services/http/http_to_https_redirect.conf
-RUN echo "        listen 80;" >> /etc/nginx/services/http/http_to_https_redirect.conf
-RUN echo "        listen [::]:80;" >> /etc/nginx/services/http/http_to_https_redirect.conf
+RUN echo "        include snippets/listen_http.conf;" >> /etc/nginx/services/http/http_to_https_redirect.conf
 RUN echo "        return 301 https://$host$request_uri;" >> /etc/nginx/services/http/http_to_https_redirect.conf
 RUN echo "}" >> /etc/nginx/services/http/http_to_https_redirect.conf
 
