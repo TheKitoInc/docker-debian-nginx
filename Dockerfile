@@ -77,6 +77,7 @@ RUN echo "server {" >> /etc/nginx/services/http/teapot.conf
 RUN echo "        include snippets/listen_https.conf;" >> /etc/nginx/services/http/teapot.conf
 RUN echo "        include snippets/snakeoil.conf;" >> /etc/nginx/services/http/teapot.conf
 RUN echo "        include snippets/robots.conf;" >> /etc/nginx/services/http/teapot.conf
+RUN echo "        server_name ~^(.+)\$;" >> /etc/nginx/services/http/teapot.conf
 RUN echo "        return 418;" >> /etc/nginx/services/http/teapot.conf
 RUN echo "}" >> /etc/nginx/services/http/teapot.conf
 
